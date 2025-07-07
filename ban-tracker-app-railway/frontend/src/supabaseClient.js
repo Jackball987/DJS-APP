@@ -1,5 +1,8 @@
-import { createClient } from '@supabase/supabase-js';
+const API_URL = "https://djs-app-production.up.railway.app";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Example usage:
+export async function getUsers() {
+  const response = await fetch(`${API_URL}/users`);
+  const data = await response.json();
+  return data;
+}
