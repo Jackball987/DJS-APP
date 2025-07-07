@@ -10,16 +10,22 @@ const PORT = process.env.PORT || 8080;
 // Initialize Supabase
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-// Example Route
-app.get('/bans', async (req, res) => {
-  const { data, error } = await supabase.from('bans').select('*');
+// Add this route near the bottom, after app.use() or existing routes
+app.get('/api/bans', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('bans')
+      .select('*');
 
-  if (error) {
-    return res.status(500).json({ error: error.message });
+    if (error) throw error;
+
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching bans:', err.message);
+    res.status(500).json({ error: 'Failed to fetch bans' });
   }
-
-  res.json(data);
 });
+
 
 app.listen(PORT, () => {
   console.log(`✅ Backend running on port ${PORT}`);
