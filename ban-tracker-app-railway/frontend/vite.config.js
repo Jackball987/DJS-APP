@@ -6,6 +6,10 @@ dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
+});
+
+export default defineConfig({
+  plugins: [react()],
   server: {
     port: 5173,
     proxy: {
