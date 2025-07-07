@@ -19,5 +19,5 @@ app.get('/api/users', async (req, res) => {
   res.json(data);
 });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`✅ Backend running on port ${PORT}`));
