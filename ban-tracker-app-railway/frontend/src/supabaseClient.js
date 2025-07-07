@@ -1,8 +1,13 @@
-const API_URL = "https://djs-app-production.up.railway.app";
+// src/supabaseClient.js
 
-// Example usage:
-export async function getUsers() {
-  const response = await fetch(`${API_URL}/users`);
-  const data = await response.json();
-  return data;
-}
+import { createClient } from '@supabase/supabase-js';
+
+// Environment variables (these must be set in your .env file or Railway project)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+// Create the Supabase client
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Export it as default
+export default supabase;
